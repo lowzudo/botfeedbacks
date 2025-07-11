@@ -15,7 +15,7 @@ client.on('qr', qr => {
 client.on('ready', () => {
     console.log('🤖 Bot pronto!');
 
-  // Exemplo: enviar feedback da turma e aula todo dia às 13h
+  // Exemplo: enviar feedback da turma e aula todo dia às 21h
   cron.schedule('0 21 * * *', async () => {
     const turma = 'CTRL+KIDS1';  // Pode mudar conforme necessidade
     const aula = 'AU-01';       
