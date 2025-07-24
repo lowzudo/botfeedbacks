@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+:root{
+    --black: #000000;
+    --font-primary: #99FFFF;
+    --font-secondary: #FF9933;
+    --white: #ffffff;
+    --background: rgb(146, 227, 225);
+    --font: "Rubik", sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+body{
+    height: 100vh;
+    background-color: var(--background);
+    font-family: var(--font);
+    font-weight: 600;
+    font-style: italic;
+}
+
+.container{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, rgba(250, 150, 0, 0.8) 0%, rgba(130, 138, 227, 0.9) 100%);
+    width: 100%;
+    max-width: 120vh;
+    height: 80vh;
+    border-radius: 24px;
+    color: var(--black);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
+                inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    transform: rotate(30deg);
+    pointer-events: none;
+}
+
+.card_conteudo{
+    color: #1d1d1d;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-direction: row;
+}
+
+h1{
+    margin-top: 20px;
+    font-size: 40px;
+    
+}
+
+.img{
+    border-radius: 20px;
+    height: 10vh;
+}
+
+.div_select{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-top: 30px;
+}
+
+
+
