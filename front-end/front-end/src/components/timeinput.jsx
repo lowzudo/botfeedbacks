@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import styles from '../styles/timeinput.module.css'
+import styles from '../styles/inputs.module.css'
+
 
 export default function TimeInput({ label = "Escolha um horário", onChange }) {
     const [value, setValue] = useState("")

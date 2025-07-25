@@ -1,6 +1,8 @@
 import React from 'react'
 import styles from '../styles/styles.module.css'
 import TimeInput from './timeinput.jsx'
+import SelectTurma from './classinput.jsx'
+import Button from './button.jsx'
 
 export default function Card({children}) {
     return (
@@ -13,8 +15,10 @@ export default function Card({children}) {
                 <div className={styles.div_select}>
                     <section className={styles.secao_select}>
                         <TimeInput/>
+                        <SelectTurma/>
                     </section>
                 </div>
+                < Button/>
             {children}
         </div>
     )
