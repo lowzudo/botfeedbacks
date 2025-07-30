@@ -4,19 +4,21 @@
     --font: "Rubik", sans-serif;
 }
 
+
 .inputGroup {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
-    width: 100%;
-    max-width: 500px;
-    margin: 1rem auto;
+    width: 200px;
+    margin: 0;
 }
 
+/* INPUT */
 .input {
     width: 200px;
-    height: 80px;
+    height: 85px;
     text-align: center;
     padding: 1.2rem 0.75rem 0.1rem;
     font-size: 1rem;
@@ -26,46 +28,49 @@
     color: #fff;
     outline: none;
     transition: border 0.3s;
+    font-weight: 700;
+    font-style: italic;
 }
 
-.input:hover{
+.input:hover {
     transition: 0.5s;
-    animation-delay: 0.2s;
     transform: scale(1.05);
 }
 
-.input:focus {
-    border-color: var(--primary);
-}
-
 .label {
-    margin-left: 10px;
     position: absolute;
-    top: 0.5rem;
+    left: 60%;
+    transform: translateX(-50%);
+    top: 20%;
     font-size: 1rem;
     color: #aaa;
     pointer-events: none;
     transition: all 0.2s ease;
+    width: 100%;
 }
 
 .input:focus + .label,
 .filled {
-    top: 0.4rem;
-    font-size: 0.95rem;
-    color: #00bfff;
+    top: 10px;
+    font-size: 0.9rem;
+    color: var(--primary);
 }
+
+.input:hover + .label {
+    top: 10px;
+    font-size: 0.9rem;
+}
+
 
 .selectclass{
-    width: 500px;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    margin-right: 20px;
 }
-
 .selectclass_input{
     background-color: #1f1f1f;
     color: #aaa;
-    height: 80px;
+    height: 85px;
     width: 200px;
     border: 2px solid var(--secondary);
     border-radius: 10px;
@@ -89,3 +94,35 @@
     transform: scale(1.05);
 }
 
+.selectau{
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.selectau_input{
+    background-color: #000000;
+    color: #aaa;
+    height: 85px;
+    width: 200px;
+    border: 2px solid var(--secondary);
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 1rem;
+    transition: border 0.3s;
+}
+
+.selectau_input:focus{
+    border-color: var(--primary);
+    color: #00bfff;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.selectau_input:hover{
+    transition: 0.5s;
+    animation-delay: 0.2s;
+    transform: scale(1.05);
+}

@@ -13,7 +13,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow: hidden;
 }
 
 body{
@@ -80,19 +79,13 @@ h1{
     height: 10vh;
 }
 
-.div_select{
+.div_select, .secao_select {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
-    margin-top: 30px;
-}
-
-.secao_select{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
+    gap: 5rem;
+    margin-top: 20px;
 }
 
 

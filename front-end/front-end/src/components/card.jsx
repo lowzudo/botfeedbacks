@@ -3,19 +3,22 @@ import styles from '../styles/styles.module.css'
 import TimeInput from './timeinput.jsx'
 import SelectTurma from './classinput.jsx'
 import Button from './button.jsx'
+import SelectAula from './auinput.jsx'
+
 
 export default function Card({children}) {
     return (
         <div className={styles.card}>
             <div className={styles.card_conteudo}>
-                <img src="https://yt3.googleusercontent.com/ytc/AIdro_mFM6BvvXufEjZUzTpLCBBEc82PDb0X6eLN-CzDM_3YbvU=s900-c-k-c0x00ffffff-no-rj" alt="Logo Ctrl+Play" className={styles.img} />
+                <img src="https://mapadasfranquias.com.br/wp-content/uploads/2019/12/ctrllogo_884467.png" alt="Logo Ctrl+Play" className={styles.img} />
                 <h1>BOT FEEDBACKS CTRL+PLAY</h1>
-                <img src="https://yt3.googleusercontent.com/ytc/AIdro_mFM6BvvXufEjZUzTpLCBBEc82PDb0X6eLN-CzDM_3YbvU=s900-c-k-c0x00ffffff-no-rj" alt="Logo Ctrl+Play" className={styles.img} />
+                <img src="https://mapadasfranquias.com.br/wp-content/uploads/2019/12/ctrllogo_884467.png" alt="Logo Ctrl+Play" className={styles.img} />
             </div>
                 <div className={styles.div_select}>
                     <section className={styles.secao_select}>
                         <TimeInput/>
                         <SelectTurma/>
+                        <SelectAula />
                     </section>
                 </div>
                 < Button/>

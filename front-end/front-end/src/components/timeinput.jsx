@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import styles from '../styles/inputs.module.css'
 
-
 export default function TimeInput({ label = "Escolha um horário", onChange }) {
     const [value, setValue] = useState("")
 
@@ -19,7 +18,9 @@ export default function TimeInput({ label = "Escolha um horário", onChange }) {
                 className={styles.input}
                 required
             />
-            <label className={`${styles.label} ${value && styles.filled}`}>
+            <label
+                className={`${styles.label} ${value ? styles.filled : ""}`}
+            >
                 {label}
             </label>
         </div>
