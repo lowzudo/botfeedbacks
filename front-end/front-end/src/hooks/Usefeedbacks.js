@@ -4,6 +4,7 @@ export default function useFeedbacks() {
     const [feedbacks, setFeedbacks] = useState({});
     const [aulas, setAulas] = useState([]);
     const [Au, setAu] = useState('');
+    const [turmaSelecionada, setTurmaSelecionada] = useState('');
 
     useEffect(() => {
         fetch('http://localhost:3001/feedbacks')
@@ -12,10 +13,10 @@ export default function useFeedbacks() {
                 console.log('Dados completos recebidos:', data);
                 setFeedbacks(data);
 
-                // Pega a primeira turma e extrai as aulas
-                const primeiraTurma = Object.values(data)[0];
+                const primeiraTurma = Object.keys(data)[0];
                 if (primeiraTurma) {
-                    const chavesDeAulas = Object.keys(primeiraTurma);
+                    setTurmaSelecionada(primeiraTurma); // <-- seta a primeira turma por padrão
+                    const chavesDeAulas = Object.keys(data[primeiraTurma]);
                     setAulas(chavesDeAulas);
                     setAu(chavesDeAulas[0] || '');
                 }
@@ -28,5 +29,7 @@ export default function useFeedbacks() {
         aulas,
         Au,
         setAu,
+        turmaSelecionada,
+        setTurmaSelecionada, // <- aqui está o que faltava
     };
 }

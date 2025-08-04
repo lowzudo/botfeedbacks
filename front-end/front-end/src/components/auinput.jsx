@@ -1,5 +1,5 @@
 import React from 'react';
-import useFeedbacks from '../hooks/useFeedbacks'; 
+import useFeedbacks from '../hooks/Usefeedbacks'; 
 import styles from '../styles/inputs.module.css'; 
 
 export default function SelectAula() {
