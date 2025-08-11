@@ -1,25 +1,21 @@
-import React from 'react';
-import useFeedbacks from '../hooks/Usefeedbacks'; 
-import styles from '../styles/inputs.module.css'; 
+import React from 'react'
+import styles from '../styles/inputs.module.css'
 
-export default function SelectAula() {
-    const { aulas, Au, setAu } = useFeedbacks();
-
+export default function SelectAula({ aulas, Au, setAu }) {
     return (
-        <div className="selectau">
+        <div className={styles.selectau}>
             <select
-                id="aula"
                 value={Au}
                 onChange={(e) => setAu(e.target.value)}
                 className={styles.selectau_input}
             >
                 <option value="" disabled>-- Escolha uma aula --</option>
-                {aulas.map((aula) => (
+                {aulas.map(aula => (
                     <option key={aula} value={aula}>
                         {aula}
                     </option>
                 ))}
             </select>
         </div>
-    );
+    )
 }
