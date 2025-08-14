@@ -1,5 +1,12 @@
+// inicia os arquivos apifeedbacks e servidor
+require('./apifeedbacks');
+require('./servidor');
+
+const express = require('express');
+const cors = require('cors');
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
+const QRCode = require('qrcode');
 const cron = require('node-cron');
 const fs = require('fs');
 const moment = require('moment-timezone');
@@ -13,6 +20,9 @@ const client = new Client({
 let scheduledTask = null;
 let countdownInterval = null;
 let lastConfig = null;
+
+let qrString = null;       // QR code em base64 para o front
+let nextExecution = null;  // próxima execução para o front
 
 // ==================== Funções ====================
 function loadConfig() {
@@ -34,7 +44,7 @@ function getNextExecutionTime(horario) {
 
 function startCountdown(horario) {
     if (countdownInterval) clearInterval(countdownInterval);
-    let nextExecution = getNextExecutionTime(horario);
+    nextExecution = getNextExecutionTime(horario);
 
     countdownInterval = setInterval(() => {
         const now = moment().tz('America/Sao_Paulo');
@@ -42,16 +52,6 @@ function startCountdown(horario) {
 
         if (diff <= 0) {
             clearInterval(countdownInterval);
-        } else {
-            const duration = moment.duration(diff);
-            const h = String(duration.hours()).padStart(2, '0');
-            const m = String(duration.minutes()).padStart(2, '0');
-            const s = String(duration.seconds()).padStart(2, '0');
-
-            // Windows-friendly console
-            process.stdout.clearLine();
-            process.stdout.cursorTo(0);
-            process.stdout.write(`⏳ Próximo envio em ${h}:${m}:${s}`);
         }
     }, 1000);
 }
@@ -108,7 +108,8 @@ function watchConfig() {
 
 // ==================== Eventos do Bot ====================
 client.on('qr', qr => {
-    qrcode.generate(qr, { small: true });
+    qrcode.generate(qr, { small: true }); // Terminal
+    QRCode.toDataURL(qr).then(url => qrString = url); // Base64 para front
     console.log('Escaneie o QR Code acima com o WhatsApp.');
 });
 
@@ -118,5 +119,33 @@ client.on('ready', () => {
     scheduleTask(lastConfig);
     watchConfig();
 });
+
+// ==================== Express / API ====================
+const app = express();
+app.use(cors({ origin: 'http://localhost:5173' })); // Front React
+app.use(express.json());
+
+app.get('/bot-status', (req, res) => {
+    let countdown = null;
+    if (nextExecution) {
+        const diff = nextExecution.diff(moment().tz('America/Sao_Paulo'));
+        if (diff > 0) {
+            const duration = moment.duration(diff);
+            const h = String(duration.hours()).padStart(2,'0');
+            const m = String(duration.minutes()).padStart(2,'0');
+            const s = String(duration.seconds()).padStart(2,'0');
+            countdown = `${h}:${m}:${s}`;
+        }
+    }
+
+    res.json({
+        ready: client.info && client.info.wid ? true : false,
+        qr: qrString,
+        nextExecution: countdown
+    });
+});
+
+const PORT = 3003;
+app.listen(PORT, () => console.log(`API do bot rodando em http://localhost:${PORT}`));
 
 client.initialize();
